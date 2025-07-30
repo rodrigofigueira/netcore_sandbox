@@ -1,13 +1,13 @@
 ﻿Console.WriteLine("Demonstrando Chained Configuration");
 
 var configModuloA = new ConfigurationBuilder()
-                .AddJsonFile("ModuloA.json", optional: false, reloadOnChange: true)
+                .AddJsonFile("Assets/ModuloA.json", optional: false, reloadOnChange: true)
                 .Build();
 
 configModuloA.PrintConfiguracao("Módulo A");
 
 var configModuloB = new ConfigurationBuilder()
-                .AddJsonFile("ModuloB.json", optional: false, reloadOnChange: true)
+                .AddJsonFile("Assets/ModuloB.json", optional: false, reloadOnChange: true)
                 .Build();
 
 configModuloB.PrintConfiguracao("Módulo B");
