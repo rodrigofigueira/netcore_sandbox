@@ -1,20 +1,40 @@
 ﻿Console.WriteLine("Demonstrando Chained Configuration");
 
-var configModuloA = new ConfigurationBuilder()
-                .AddJsonFile("Assets/ModuloA.json", optional: false, reloadOnChange: true)
+var builderJsonA = new ConfigurationBuilder()
+                .AddJsonFile("Assets/ModuloA.json")
                 .Build();
 
-configModuloA.PrintConfiguracao("Módulo A");
+builderJsonA.PrintConfiguracao("Json - Módulo A");
 
-var configModuloB = new ConfigurationBuilder()
-                .AddJsonFile("Assets/ModuloB.json", optional: false, reloadOnChange: true)
+var builderJsonB = new ConfigurationBuilder()
+                .AddJsonFile("Assets/ModuloB.json")
                 .Build();
 
-configModuloB.PrintConfiguracao("Módulo B");
+builderJsonB.PrintConfiguracao("Json - Módulo B");
+
+
+var builderInMemory = new ConfigurationBuilder()
+                .AddInMemoryCollection(
+                [
+                    new KeyValuePair<string, string?>("Configuracao:ExclusivaIMemory", "Configuração exclusiva InMemory"),
+                    new KeyValuePair<string, string?>("Configuracao:Compartilhada", "Valor Compartilhada InMemory"),
+                ])
+                .Build();
+
+builderInMemory.PrintConfiguracao("In Memory");
+
+
+var builderXML = new ConfigurationBuilder()
+                 .AddXmlFile("Assets/Config.xml")
+                 .Build();
+
+builderXML.PrintConfiguracao("XML");
 
 var configEncadeada = new ConfigurationBuilder()
-                .AddConfiguration(configModuloA)
-                .AddConfiguration(configModuloB)
+                .AddConfiguration(builderJsonA)
+                .AddConfiguration(builderJsonB)
+                .AddConfiguration(builderInMemory)
+                .AddConfiguration(builderXML)
                 .Build();
 
 configEncadeada.PrintConfiguracao("Módulo Encadeado");

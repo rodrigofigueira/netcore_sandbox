@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <Configuracao>
+    <ExclusivaXML>Configuração exclusiva do XML</ExclusivaXML>
+    <Compartilhada>Configuração compartilhada do XML</Compartilhada>
+  </Configuracao>
+</configuration>
