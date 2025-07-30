@@ -1,16 +1,16 @@
 ﻿Console.WriteLine("Demonstrando Chained Configuration");
 
 var builderJsonA = new ConfigurationBuilder()
-                .AddJsonFile("Assets/ModuloA.json")
+                .AddJsonFile("Assets/Modulo.json")
                 .Build();
 
-builderJsonA.PrintConfiguracao("Json - Módulo A");
+builderJsonA.PrintConfiguracao("Json - Módulo");
 
 var builderJsonB = new ConfigurationBuilder()
-                .AddJsonFile("Assets/ModuloB.json")
+                .AddJsonFile("Assets/appsettings.json")
                 .Build();
 
-builderJsonB.PrintConfiguracao("Json - Módulo B");
+builderJsonB.PrintConfiguracao("Json - appsettings");
 
 
 var builderInMemory = new ConfigurationBuilder()

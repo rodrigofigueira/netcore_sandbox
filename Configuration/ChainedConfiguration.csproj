@@ -21,10 +21,10 @@
     <None Update="Assets\Config.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Assets\ModuloB.json">
+    <None Update="Assets\Modulo.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Assets\ModuloA.json">
+    <None Update="Assets\appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
