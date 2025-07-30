@@ -1,0 +1,6 @@
+﻿{
+  "Configuracao": {
+    "ExclusivaA": "Configuração exclusiva do Modulo A",
+    "Compartilhada": "Configuração compartilhada do Modulo A"
+  }
+}
