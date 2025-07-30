@@ -42,6 +42,13 @@ var builderCLI = new ConfigurationBuilder()
 
 builderCLI.PrintConfiguracao("CLI");
 
+
+var builderSecrets = new ConfigurationBuilder()
+                        .AddUserSecrets(Assembly.GetExecutingAssembly())
+                        .Build();
+
+builderSecrets.PrintConfiguracao("Secrets");
+
 var configEncadeada = new ConfigurationBuilder()
                 .AddConfiguration(builderJsonA)
                 .AddConfiguration(builderJsonB)
