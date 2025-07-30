@@ -36,12 +36,19 @@ var builderVarAmbiente = new ConfigurationBuilder()
 
 builderVarAmbiente.PrintConfiguracao("Var Ambiente");
 
+var builderCLI = new ConfigurationBuilder()
+                     .AddCommandLine(args)
+                     .Build();
+
+builderCLI.PrintConfiguracao("CLI");
+
 var configEncadeada = new ConfigurationBuilder()
                 .AddConfiguration(builderJsonA)
                 .AddConfiguration(builderJsonB)
                 .AddConfiguration(builderInMemory)
                 .AddConfiguration(builderXML)
                 //.AddConfiguration(builderVarAmbiente) // não adicionei pois tem muito volume
+                .AddConfiguration(builderCLI)
                 .Build();
 
 configEncadeada.PrintConfiguracao("Módulo Encadeado");

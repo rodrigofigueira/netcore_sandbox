@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Configuration": {
+      "commandName": "Project",
+      "commandLineArgs": "--Configuracao:Exclusiva \"Configuraçao exclusiva CLI\" --Configuracao:Compartilhada \"Configuração compartilhada do CLI\""
+    }
+  }
+}
