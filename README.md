@@ -1,6 +1,6 @@
 
 
-\# Netcore Sandbox
+# Netcore Sandbox
 
 
 
@@ -8,7 +8,7 @@ Repositório para estudos de .netcore
 
 
 
-\# 01 -Configurations
+# 01 -Configurations
 
 
 
@@ -16,7 +16,7 @@ Estudo de ConfigurationBuilder com os providers para Json, CommandLine, Environm
 
 
 
-\### Pacotes instalados
+### Pacotes instalados
 
 
 
@@ -38,7 +38,7 @@ Microsoft.Extensions.Configuration.Xml
 
 
 
-\### Os comandos abaixo são necessários para criação dos secrets
+### Os comandos abaixo são necessários para criação dos secrets
 
 
 
@@ -56,7 +56,7 @@ dotnet user-secrets set "ConexaoDb:Senha" "MinhaSenhaSuperSecreta"
 
 
 
-\### Todo
+### Todo
 
 
 
