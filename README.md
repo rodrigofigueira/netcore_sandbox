@@ -8,10 +8,10 @@ Repositório para estudos de .netcore
 
 
 
-# 01 -Configurations
 
-
-
+<details>
+<summary><strong>01 - Configurations</strong></summary>
+<br />
 Estudo de ConfigurationBuilder com os providers para Json, CommandLine, EnvironmentVariables, UserSecrets, XML e InMemory.
 
 
@@ -66,6 +66,7 @@ Outros tópicos para estudar
 
 - [ ] Provedores Personalizados Mais Complexos: Para cenários muito específicos, onde a configuração viria de um banco de dados, um serviço REST, ou um formato de arquivo proprietário, a criação de provedores personalizados mais avançados poderia ser um estudo interessante.
 
+</details>
 
 
 
