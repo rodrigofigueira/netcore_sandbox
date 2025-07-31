@@ -69,4 +69,6 @@ Outros tópicos para estudar
 </details>
 
 
-
+# Todo
+- Criar um Readme por projeto
+- Criar índice dos projetos no readme principal
