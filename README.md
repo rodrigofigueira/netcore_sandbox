@@ -58,6 +58,13 @@ dotnet user-secrets set "ConexaoDb:Senha" "MinhaSenhaSuperSecreta"
 
 ### Todo
 
+Outros tópicos para estudar
+
+- [ ] Options Pattern (IOptions<T>, IOptionsSnapshot<T>, IOptionsMonitor<T>): Esta é a forma recomendada de consumir as configurações em sua aplicação, mapeando-as para classes C# fortemente tipadas. Isso traz segurança de tipo e é essencial para configurações que recarregam (reloadOnChange).
+
+- [ ] Provedores de Cofre de Segredos em Nuvem: Se você trabalha com nuvem (Azure, AWS, Google Cloud), investigar provedores como AddAzureKeyVault (para Azure Key Vault) é fundamental para gerenciar segredos em produção de forma segura e escalável.
+
+- [ ] Provedores Personalizados Mais Complexos: Para cenários muito específicos, onde a configuração viria de um banco de dados, um serviço REST, ou um formato de arquivo proprietário, a criação de provedores personalizados mais avançados poderia ser um estudo interessante.
 
 
 
