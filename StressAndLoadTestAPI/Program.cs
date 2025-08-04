@@ -5,22 +5,20 @@ builder.Services.AddTransient<TaskServiceTransient>();
 
 var app = builder.Build();
 
-app.MapPost("/singleton", async (TaskServiceSingleton service) =>
+app.MapPost("/singleton", (TaskServiceSingleton service, TaskServiceSingleton service2) =>
 {
-    await service.SimulateWorkAsync();
-    return Results.Ok($"Requisição processada por um Singleton. Tempo de vida da instância: {service.GetLifetime()}ms");
+    return Results.Ok($"Requisição processada por um Singleton. Tempo de vida da instância");
 });
 
-app.MapPost("/scoped", async (TaskServiceScoped service) =>
+app.MapPost("/scoped", (TaskServiceScoped service, TaskServiceScoped service2) =>
 {
-    await service.SimulateWorkAsync();
-    return Results.Ok($"Requisição processada por um Scoped. Tempo de vida da instância: {service.GetLifetime()}ms");
+
+    return Results.Ok($"Requisição processada por um Scoped");
 });
 
-app.MapPost("/transient", async (TaskServiceTransient service) =>
+app.MapPost("/transient", (TaskServiceTransient service, TaskServiceTransient service2) =>
 {
-    await service.SimulateWorkAsync();
-    return Results.Ok($"Requisição processada por um Transient. Tempo de vida da instância: {service.GetLifetime()}ms");
+    return Results.Ok($"Requisição processada por um Transient");
 });
 
 app.Run();
