@@ -16,13 +16,13 @@ Requisição para endpoint /hello com header de autorização inserido
 
 Log do middleware SimpleLoggingMiddleware registrando o código de retorno.
 
-![200](screenshots/console_200.png.png)
+![200](screenshots/console_200.png)
 
 
 Requisição para endpoint /hello sem header de autorização inserido.
 
-![401](screenshots/401_sem_header.png.png)
+![401](screenshots/401_sem_header.png)
 
 Log do middleware SimpleLoggingMiddleware registrando o código de retorno.
 
-![401_console](screenshots/console_401.png.png.png)
+![401_console](screenshots/console_401.png.png)
