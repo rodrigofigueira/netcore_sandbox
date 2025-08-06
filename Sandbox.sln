@@ -19,6 +19,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04 - Request Pipeline", "04
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RequestPipeline", "RequestPipeline\RequestPipeline.csproj", "{C5499DCA-9880-4B0D-B2DB-00CACA2C545D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05 - API no Docker para ECS", "05 - API no Docker para ECS", "{1CE33EFD-246D-490B-B6A3-71B8DA66FD0F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIDockerECS", "APIDockerECS\APIDockerECS.csproj", "{7148B910-0CAD-497A-8044-7151BC323BF9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +45,10 @@ Global
 		{C5499DCA-9880-4B0D-B2DB-00CACA2C545D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5499DCA-9880-4B0D-B2DB-00CACA2C545D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5499DCA-9880-4B0D-B2DB-00CACA2C545D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7148B910-0CAD-497A-8044-7151BC323BF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7148B910-0CAD-497A-8044-7151BC323BF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7148B910-0CAD-497A-8044-7151BC323BF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7148B910-0CAD-497A-8044-7151BC323BF9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,6 +58,7 @@ Global
 		{07EE1917-13F3-43B7-87FC-53762A560BCC} = {263BB0D7-C69E-44BB-95B4-76BB6B603B3F}
 		{34DB8087-6E80-40C2-8A5D-9B7C369408F7} = {7FAFDFA6-502A-4270-BFE9-101CD9EA9148}
 		{C5499DCA-9880-4B0D-B2DB-00CACA2C545D} = {3C8B4227-517D-4B3B-9F71-815F0B8DE33D}
+		{7148B910-0CAD-497A-8044-7151BC323BF9} = {1CE33EFD-246D-490B-B6A3-71B8DA66FD0F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DF089CC1-1B58-4D80-8F92-BA799ED1CBE4}
