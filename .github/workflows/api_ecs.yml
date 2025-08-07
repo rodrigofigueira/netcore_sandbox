@@ -71,8 +71,7 @@ jobs:
   # O Job de destroy pode ficar como está
   destroy:
     runs-on: ubuntu-latest
-    if: "contains(github.event.head_commit.message, '[destroy]')"
-    needs: deploy
+    if: "contains(github.event.head_commit.message, '[destroy]')"    
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
