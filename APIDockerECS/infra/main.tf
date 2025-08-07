@@ -101,7 +101,6 @@ resource "aws_ecs_service" "api_service" {
   cluster         = aws_ecs_cluster.api_cluster.id
   task_definition = aws_ecs_task_definition.api_task.arn
   desired_count   = 1
-  launch_type     = "FARGATE"
 
   capacity_provider_strategy {
     capacity_provider = "FARGATE_SPOT"
