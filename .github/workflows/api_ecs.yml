@@ -19,8 +19,10 @@ permissions:
   contents: read
 
 jobs:
+  # Job de deploy que roda em commits normais
   deploy:
     runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[destroy]')"
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -31,6 +33,19 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
           role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/github-actions-role
           role-session-name: github-actions-session
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.5.0
+
+      # Passo 1: Rodar o Terraform para garantir que a infraestrutura exista
+      - name: Terraform Init and Apply
+        id: apply
+        run: |
+          terraform init
+          terraform apply -input=false -auto-approve -var "image_tag=${{ github.sha }}"
+        working-directory: ./APIDockerECS/infra
 
       - name: Login to Amazon ECR
         id: login-ecr
@@ -44,6 +59,7 @@ jobs:
         run: |
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG ./APIDockerECS/src
 
+      # Passo 2: Fazer o Push da imagem agora que o repositório existe
       - name: Push Docker image to ECR
         id: push-image
         env:
@@ -51,28 +67,8 @@ jobs:
           IMAGE_TAG: ${{ github.sha }}
         run: |
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
-        with:
-          terraform_version: 1.5.0
-
-      - name: Terraform Init
-        id: init
-        run: terraform init
-        working-directory: ./APIDockerECS/infra
-
-      - name: Terraform Plan
-        id: plan
-        run: terraform plan -input=false -var "image_tag=${{ github.sha }}"
-        working-directory: ./APIDockerECS/infra
-
-      - name: Terraform Apply
-        id: apply
-        run: terraform apply -input=false -auto-approve -var "image_tag=${{ github.sha }}"
-        working-directory: ./APIDockerECS/infra
-
-# Job de destroy que só roda com a mensagem de commit específica
+  
+  # O Job de destroy pode ficar como está
   destroy:
     runs-on: ubuntu-latest
     if: "contains(github.event.head_commit.message, '[destroy]')"
@@ -99,4 +95,4 @@ jobs:
 
       - name: Terraform Destroy
         run: terraform destroy -auto-approve
-        working-directory: ./APIDockerECS/infra        
+        working-directory: ./APIDockerECS/infra
