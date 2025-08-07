@@ -3,6 +3,22 @@ provider "aws" {
   region = var.aws_region
 }
 
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+
+  # Configuração do backend remoto no S3
+  backend "s3" {
+    bucket = "rodrigofigueira-terraform-state"
+    key    = "apidockerecs/terraform.tfstate"
+    region = "us-east-1"
+  }
+}
+
 # --- Data Sources para encontrar a VPC padrão e as subnets ---
 data "aws_vpc" "default" {
   default = true
