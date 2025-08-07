@@ -123,4 +123,4 @@ output "ecr_repository_url" {
 output "ecs_service_name" {
   description = "The name of the ECS service"
   value       = aws_ecs_service.api_service.name
-}  
+}
