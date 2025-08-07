@@ -6,8 +6,7 @@ provider "aws" {
 terraform {
   required_providers {
     aws = {
-      source  = "hashicorp/aws"
-      version = "~> 5.0"
+      source = "hashicorp/aws"
     }
   }
 
@@ -105,6 +104,23 @@ resource "aws_security_group" "api_sg" {
   name        = "${var.ecs_task_name}-sg"
   description = "Security group for the API container"
   vpc_id      = data.aws_vpc.default.id
+
+  # Regra de entrada para permitir tráfego HTTP
+  ingress {
+    description = "Allow HTTP from anywhere"
+    cidr_blocks = ["0.0.0.0/0"]
+    from_port   = var.container_port
+    to_port     = var.container_port
+    protocol    = "tcp"
+  }
+
+  # Adicione esta regra de saída
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1" # Permite todo o tráfego
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 
   tags = {
     Name = "${var.ecs_task_name}-sg"
