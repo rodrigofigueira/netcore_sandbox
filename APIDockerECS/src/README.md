@@ -30,3 +30,4 @@ docker push <id-da-sua-conta>.dkr.ecr.<sua-regiao>.amazonaws.com/apidockerecs-re
 - [ ] Task
 - [ ] Cluster
 - [ ] Service
+- [ ] Colocar evidência do teste
