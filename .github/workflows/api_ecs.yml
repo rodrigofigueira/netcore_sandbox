@@ -1,0 +1,102 @@
+name: Deploy API to ECS
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'APIDockerECS/src/**'
+      - 'APIDockerECS/infra/**'
+
+env:
+  AWS_REGION: us-east-1
+  ECR_REPOSITORY: apidockerecs-repo
+  ECS_CLUSTER: api-test-cluster
+  ECS_SERVICE: api-test-service
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: ${{ env.AWS_REGION }}
+          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/github-actions-role
+          role-session-name: github-actions-session
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+        
+      - name: Build and Tag Docker image
+        id: build-image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG ./APIDockerECS/src
+
+      - name: Push Docker image to ECR
+        id: push-image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.5.0
+
+      - name: Terraform Init
+        id: init
+        run: terraform init
+        working-directory: ./APIDockerECS/infra
+
+      - name: Terraform Plan
+        id: plan
+        run: terraform plan -input=false -var "image_tag=${{ github.sha }}"
+        working-directory: ./APIDockerECS/infra
+
+      - name: Terraform Apply
+        id: apply
+        run: terraform apply -input=false -auto-approve -var "image_tag=${{ github.sha }}"
+        working-directory: ./APIDockerECS/infra
+
+# Job de destroy que só roda com a mensagem de commit específica
+  destroy:
+    runs-on: ubuntu-latest
+    if: "contains(github.event.head_commit.message, '[destroy]')"
+    needs: deploy
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: ${{ env.AWS_REGION }}
+          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/github-actions-role
+          role-session-name: github-actions-session
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.5.0
+
+      - name: Terraform Init
+        run: terraform init
+        working-directory: ./APIDockerECS/infra
+
+      - name: Terraform Destroy
+        run: terraform destroy -auto-approve
+        working-directory: ./APIDockerECS/infra        

@@ -21,7 +21,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RequestPipeline", "RequestP
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05 - API no Docker para ECS", "05 - API no Docker para ECS", "{1CE33EFD-246D-490B-B6A3-71B8DA66FD0F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIDockerECS", "APIDockerECS\APIDockerECS.csproj", "{7148B910-0CAD-497A-8044-7151BC323BF9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIDockerECS", "APIDockerECS\src\APIDockerECS.csproj", "{7148B910-0CAD-497A-8044-7151BC323BF9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
